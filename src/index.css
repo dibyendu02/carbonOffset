@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.concave-top {
+  width: 100%;
+  height: 200px; /* Adjust the height as needed */
+  background: red; /* This will be the main background color */
+  position: relative;
+  overflow: hidden;
+}
+
+.concave-top::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px; /* Adjust the height as needed */
+  background-color: beige; /* This will be the concave part color */
+  border-radius: 50% 50% 0 0;
+  transform: translateY(50%);
+}
