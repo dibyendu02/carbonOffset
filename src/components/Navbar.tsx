@@ -12,13 +12,13 @@ const Navbar = () => {
           <Link to="/" className="hover:text-green-600">
             Home
           </Link>
-          <Link to="#" className="hover:text-green-600">
+          <Link to="/calculator" className="hover:text-green-600">
             Carbon Calculator
           </Link>
           <Link to="#" className="hover:text-green-600">
             Gallery
           </Link>
-          <Link to="#" className="hover:text-green-600">
+          <Link to="/about" className="hover:text-green-600">
             About Us
           </Link>
           <Link to="#" className="hover:text-green-600">
@@ -28,14 +28,14 @@ const Navbar = () => {
       </div>
 
       <div className="flex gap-12 pt-3">
-        <button className="px-5 py-2 border-green-600 border-2 rounded-xl font-bold">
+        <Link
+          to="/ourProjects"
+          className="px-5 py-2 border-green-600 border-2 rounded-xl font-bold"
+        >
           Our Projects
-        </button>
+        </Link>
         <Link
           to="/offsetNow"
-          //   onClick={() => {
-          //     navigation.navigate();
-          //   }}
           className="px-5 py-2 bg-green-600 rounded-xl text-white flex gap-2 items-center font-bold"
         >
           <FaTree /> Offset Now
