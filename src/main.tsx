@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
@@ -8,6 +7,9 @@ import About from "./pages/About";
 import OffsetNow from "./pages/OffsetNow";
 import CarbonCalculator from "./pages/CarbonCalculator";
 import OurProjects from "./pages/OurProjects";
+import UserDashboard from "./pages/UserDashboard";
+import UserTransactions from "./pages/UserTransactions";
+import UserOffsetDetails from "./pages/UserOffsetDetails";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,18 @@ const router = createBrowserRouter([
   {
     path: "/ourProjects",
     element: <OurProjects />,
+  },
+  {
+    path: "/userDashboard",
+    element: <UserDashboard />,
+  },
+  {
+    path: "/userTransactions",
+    element: <UserTransactions />,
+  },
+  {
+    path: "/userOffsetDetails",
+    element: <UserOffsetDetails />,
   },
 ]);
 

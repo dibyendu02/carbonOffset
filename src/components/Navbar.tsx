@@ -40,9 +40,12 @@ const Navbar = () => {
         >
           <FaTree /> Offset Now
         </Link>
-        <button className="px-5 py-2 ml-16 border-black border-2 rounded-xl  flex gap-2 items-center font-bold">
+        <Link
+          to="/userDashboard"
+          className="px-5 py-2 ml-16 border-black border-2 rounded-xl  flex gap-2 items-center font-bold"
+        >
           <RiWallet3Fill size={20} fill="black" /> Wallet
-        </button>
+        </Link>
       </div>
     </div>
   );
