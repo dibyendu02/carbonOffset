@@ -6,21 +6,12 @@ import {
   CardContent,
   Card,
 } from "../components/ui/card";
-import {
-  TableHead,
-  TableRow,
-  TableHeader,
-  TableCell,
-  TableBody,
-  Table,
-} from "../components/ui/table";
+
 import { Link, useNavigate } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
 import TopUpWithdrawChart from "../components/TopUpWithdrawChart";
 import CarbonOffsetChart from "../components/CarbonOffsetChart";
-
-const filteredUpdates = [{}];
 
 export default function UserUpdates() {
   const navigate = useNavigate();
@@ -108,7 +99,9 @@ export default function UserUpdates() {
             ></div> */}
           </div>
           <div className="flex justify-between pr-32">
-            <TopUpWithdrawChart />
+            <div className="w-1/2">
+              <TopUpWithdrawChart />
+            </div>
             <div className="w-1/4 flex flex-col items-center">
               <h1 className="font-bold text-lg">Carbon-offset Achieved</h1>
               <CarbonOffsetChart />
