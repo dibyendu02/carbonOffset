@@ -17,7 +17,6 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
-import cardBg from "../assets/userDahsboard/cardBg.png";
 
 const filteredUpdates = [{}];
 
@@ -120,7 +119,7 @@ export default function UserUpdates() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredUpdates.map((update) => (
+                {filteredUpdates.map((update: any) => (
                   <TableRow key={update?._id}>
                     <TableCell>
                       {/* {format(new Date(update?.createdAt), "PPpp")} */}
