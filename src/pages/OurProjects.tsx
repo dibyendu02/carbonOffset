@@ -8,8 +8,6 @@ import two from "../assets/projects/2.png";
 import three from "../assets/projects/3.png";
 import four from "../assets/projects/4.png";
 
-import { FaArrowRight, FaTree } from "react-icons/fa6";
-import { FaCarRear } from "react-icons/fa6";
 import Footer from "../components/Footer";
 
 const projectData = [
