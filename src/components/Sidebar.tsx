@@ -6,7 +6,7 @@ const Sidebar = () => {
   return (
     <div className="flex h-full max-h-screen flex-col gap-2">
       <div className="flex h-[60px] items-center border-b px-6">
-        <Link className="flex items-center gap-2 font-semibold" to="#">
+        <Link className="flex items-center gap-2 font-semibold" to="/">
           <Package2Icon className="h-6 w-6" />
           <span className="">Carbon Offset</span>
         </Link>

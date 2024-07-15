@@ -10,6 +10,8 @@ import OurProjects from "./pages/OurProjects";
 import UserDashboard from "./pages/UserDashboard";
 import UserTransactions from "./pages/UserTransactions";
 import UserOffsetDetails from "./pages/UserOffsetDetails";
+import Gallery from "./pages/Gallery";
+import OurServices from "./pages/OurServices";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
     element: <About />,
   },
   {
+    path: "/gallery",
+    element: <Gallery />,
+  },
+  {
     path: "/offsetNow",
     element: <OffsetNow />,
   },
@@ -29,7 +35,11 @@ const router = createBrowserRouter([
     element: <CarbonCalculator />,
   },
   {
-    path: "/ourProjects",
+    path: "/services",
+    element: <OurServices />,
+  },
+  {
+    path: "/projects",
     element: <OurProjects />,
   },
   {

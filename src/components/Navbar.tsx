@@ -15,24 +15,24 @@ const Navbar = () => {
           <Link to="/calculator" className="hover:text-green-600">
             Carbon Calculator
           </Link>
-          <Link to="#" className="hover:text-green-600">
+          <Link to="/" className="hover:text-green-600">
             Gallery
+          </Link>
+          <Link to="/projects" className="hover:text-green-600">
+            Projects
           </Link>
           <Link to="/about" className="hover:text-green-600">
             About Us
-          </Link>
-          <Link to="#" className="hover:text-green-600">
-            Cart
           </Link>
         </div>
       </div>
 
       <div className="flex gap-12 pt-3">
         <Link
-          to="/ourProjects"
+          to="/services"
           className="px-5 py-2 border-green-600 border-2 rounded-xl font-bold"
         >
-          Our Projects
+          Our Services
         </Link>
         <Link
           to="/offsetNow"

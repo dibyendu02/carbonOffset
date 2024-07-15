@@ -17,6 +17,8 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
+import TopUpWithdrawChart from "../components/TopUpWithdrawChart";
+import CarbonOffsetChart from "../components/CarbonOffsetChart";
 
 const filteredUpdates = [{}];
 
@@ -105,56 +107,12 @@ export default function UserUpdates() {
               className="rounded-md"
             ></div> */}
           </div>
-
-          <div className="border shadow-sm rounded-lg p-4">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Date</TableHead>
-                  <TableHead>User</TableHead>
-                  <TableHead>Title</TableHead>
-                  <TableHead>Description</TableHead>
-                  <TableHead>Image</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredUpdates.map((update: any) => (
-                  <TableRow key={update?._id}>
-                    <TableCell>
-                      {/* {format(new Date(update?.createdAt), "PPpp")} */}
-                    </TableCell>
-                    {/* <TableCell>{userNames[update.userId]}</TableCell> */}
-                    {/* <TableCell>{update?.title}</TableCell> */}
-                    {/* <TableCell>{update?.description}</TableCell> */}
-                    {/* <TableCell
-                      onClick={() => {
-                        // setModalImage(update?.updateImg.secure_url);
-                        setShowModal(true);
-                      }}
-                    >
-                      <img
-                        src={update?.updateImg.secure_url}
-                        alt={update?.title}
-                        style={{ width: "150px", height: "100px" }}
-                      />
-                    </TableCell> */}
-                    <TableCell>
-                      <div className="flex items-center gap-2">
-                        <Button
-                          color="red"
-                          size="sm"
-                          variant="outline"
-                          //   onClick={() => handleDelete(update._id)}
-                        >
-                          Delete
-                        </Button>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+          <div className="flex justify-between pr-32">
+            <TopUpWithdrawChart />
+            <div className="w-1/4 flex flex-col items-center">
+              <h1 className="font-bold text-lg">Carbon-offset Achieved</h1>
+              <CarbonOffsetChart />
+            </div>
           </div>
         </main>
       </div>
