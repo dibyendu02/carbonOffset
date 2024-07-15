@@ -12,6 +12,7 @@ import UserTransactions from "./pages/UserTransactions";
 import UserOffsetDetails from "./pages/UserOffsetDetails";
 import Gallery from "./pages/Gallery";
 import OurServices from "./pages/OurServices";
+import Contact from "./pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/services",
     element: <OurServices />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
   },
   {
     path: "/projects",
