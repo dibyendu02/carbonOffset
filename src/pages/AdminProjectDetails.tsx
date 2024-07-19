@@ -8,58 +8,17 @@ import {
 } from "../components/ui/card";
 
 import { Link, useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
-import ExpenseChart from "../components/ExpenseChart";
-import {
-  TableHead,
-  TableRow,
-  TableHeader,
-  TableCell,
-  TableBody,
-  Table,
-} from "../components/ui/table";
-import { format } from "date-fns";
 
-const expenseData = [
-  {
-    offsetName: "Planting Tree",
-    date: "2024-01-15T10:30:00Z",
-    amountOfTokens: "50 Tokens",
-    status: "Completed",
-  },
-  {
-    offsetName: "Vehicle Offset",
-    date: "2024-01-20T12:00:00Z",
-    amountOfTokens: "200 Tokens",
-    status: "Pending",
-  },
-  {
-    offsetName: "Planting Tree",
-    date: "2024-02-01T14:45:00Z",
-    amountOfTokens: "75 Tokens",
-    status: "Completed",
-  },
-  {
-    offsetName: "Vehicle Offset",
-    date: "2024-02-05T09:15:00Z",
-    amountOfTokens: "100 Tokens",
-    status: "Completed",
-  },
-  {
-    offsetName: "Planting Tree",
-    date: "2024-02-10T16:30:00Z",
-    amountOfTokens: "50 Tokens",
-    status: "Pending",
-  },
-];
+import { FaArrowUp } from "react-icons/fa6";
+import AdminSidebar from "../components/AdminSidebar";
 
-export default function UserOffsetDetails() {
+export default function AdminProjectDetails() {
   const navigate = useNavigate();
 
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">
-        <Sidebar />
+        <AdminSidebar />
       </div>
       <div className="flex flex-col">
         <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40">
@@ -88,58 +47,62 @@ export default function UserOffsetDetails() {
             Logout
           </Button>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
-          <h1 className="font-bold">John's Cards</h1>
-          <div className="grid h-[45vh] gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
-            <Card className="bg-green-600 h-[50%]">
+        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6 bg-black/[0.05]">
+          <div className="grid h-[20vh] gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <Card className="shadow-xl ">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-md font-bold text-white">
-                  Available Tokens
+                <CardTitle className="text-md font-bold text-black">
+                  Total User
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-white">450 Tokens</div>
+                <div className="text-2xl font-bold text-black">2,420</div>
+              </CardContent>
+              <CardContent>
+                <div className="flex gap-2 items-center">
+                  <FaArrowUp color="green" />
+                  <h1>
+                    <span className="text-green-600">40</span> % vs last month
+                  </h1>
+                </div>
               </CardContent>
             </Card>
-            <Card className="bg-green-600 h-[50%]">
+            <Card className="shadow-xl ">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-md font-bold text-white">
-                  Used Tokens
+                <CardTitle className="text-md font-bold text-black">
+                  Total Farm Onboarded
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-white">100 Tokens</div>
+                <div className="text-2xl font-bold text-black">50</div>
+              </CardContent>
+              <CardContent>
+                <div className="flex gap-2 items-center">
+                  <FaArrowUp color="green" />
+                  <h1>
+                    <span className="text-green-600">10</span> % vs last month
+                  </h1>
+                </div>
               </CardContent>
             </Card>
-            <div className="h-[300px] w-[200%] ">
-              <ExpenseChart />
-            </div>
-          </div>
-
-          <div className="border shadow-sm rounded-lg p-4 mt-6 ">
-            <h2 className="font-bold mb-4">Expense Details</h2>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Offset Name</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Amount of Tokens</TableHead>
-                  <TableHead>Status</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {expenseData.map((expense) => (
-                  <TableRow key={expense.date}>
-                    <TableCell>{expense.offsetName}</TableCell>
-                    <TableCell>
-                      {format(new Date(expense.date), "PPpp")}
-                    </TableCell>
-                    <TableCell>{expense.amountOfTokens}</TableCell>
-                    <TableCell>{expense.status}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+            <Card className="shadow-xl ">
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-md font-bold text-black">
+                  Active Projects
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-black">100</div>
+              </CardContent>
+              <CardContent>
+                <div className="flex gap-2 items-center">
+                  <FaArrowUp color="green" />
+                  <h1>
+                    <span className="text-green-600">5</span> % vs last month
+                  </h1>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </main>
       </div>

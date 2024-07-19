@@ -13,6 +13,10 @@ import UserOffsetDetails from "./pages/UserOffsetDetails";
 import Gallery from "./pages/Gallery";
 import OurServices from "./pages/OurServices";
 import Contact from "./pages/Contact";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminAllTransaction from "./pages/AdminAllTransaction";
+import AdminFarmOnboarding from "./pages/AdminFarmOnboarding";
+import AdminProjectDetails from "./pages/AdminProjectDetails";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +62,22 @@ const router = createBrowserRouter([
   {
     path: "/userOffsetDetails",
     element: <UserOffsetDetails />,
+  },
+  {
+    path: "/allTransactions",
+    element: <AdminAllTransaction />,
+  },
+  {
+    path: "/adminDashboard",
+    element: <AdminDashboard />,
+  },
+  {
+    path: "/farmOnboarding",
+    element: <AdminFarmOnboarding />,
+  },
+  {
+    path: "/adminProjectDetails",
+    element: <AdminProjectDetails />,
   },
 ]);
 

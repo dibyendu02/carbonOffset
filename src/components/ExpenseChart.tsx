@@ -20,37 +20,27 @@ ChartJS.register(
   Legend
 );
 
-const TopUpWithdrawChart: React.FC = () => {
-  const [monthRange, setMonthRange] = useState<"Jan-Jun" | "Jul-Dec">(
-    "Jan-Jun"
+const ExpenseChart: React.FC = () => {
+  const [monthRange, setMonthRange] = useState<"Jan-Jul" | "Aug-Dec">(
+    "Jan-Jul"
   );
 
   const data = {
     labels:
-      monthRange === "Jan-Jun"
-        ? ["January", "February", "March", "April", "May", "June"]
-        : ["July", "August", "September", "October", "November", "December"],
+      monthRange === "Jan-Jul"
+        ? ["January", "February", "March", "April", "May", "June", "July"]
+        : ["August", "September", "October", "November", "December"],
     datasets: [
       {
-        label: "Top Up",
+        label: "Expense",
         data:
-          monthRange === "Jan-Jun"
-            ? [300, 500, 400, 700, 600, 800]
-            : [900, 1000, 1100, 1200, 1300, 1400],
-        backgroundColor: "#1814F3",
+          monthRange === "Jan-Jul"
+            ? [250, 225, 0, 0, 0, 0, 0]
+            : [0, 0, 0, 0, 0],
+        backgroundColor: "#16DBCC",
         // borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
-        maxBarThickness: 20, // Set maximum bar width
-      },
-      {
-        label: "Withdraw",
-        data:
-          monthRange === "Jan-Jun"
-            ? [200, 400, 300, 600, 500, 700]
-            : [800, 900, 1000, 1100, 1200, 1300],
-        backgroundColor: "#16DBCC",
-        // borderColor: "rgba(255, 99, 132, 1)",
-        borderWidth: 1,
+        // borderRadius: 10, // Rounded edges
         maxBarThickness: 20, // Set maximum bar width
       },
     ],
@@ -64,7 +54,7 @@ const TopUpWithdrawChart: React.FC = () => {
       },
       title: {
         display: true,
-        text: "Top Up and Withdraw",
+        text: "Token Expenses",
         color: "black",
       },
     },
@@ -73,10 +63,16 @@ const TopUpWithdrawChart: React.FC = () => {
         grid: {
           display: false, // Hide x-axis grid
         },
+        // ticks: {
+        //   display: false, // Hide x-axis ticks
+        // },
       },
       y: {
         grid: {
           display: false, // Hide y-axis grid
+        },
+        ticks: {
+          display: false, // Hide y-axis ticks
         },
       },
     },
@@ -99,12 +95,12 @@ const TopUpWithdrawChart: React.FC = () => {
           id="monthRange"
           value={monthRange}
           onChange={(e) =>
-            setMonthRange(e.target.value as "Jan-Jun" | "Jul-Dec")
+            setMonthRange(e.target.value as "Jan-Jul" | "Aug-Dec")
           }
           style={{ width: 200 }}
         >
-          <option value="Jan-Jun">January - June</option>
-          <option value="Jul-Dec">July - December</option>
+          <option value="Jan-Jul">January - July</option>
+          <option value="Aug-Dec">August - December</option>
         </select>
       </div>
       <Bar data={data} options={options} />
@@ -112,4 +108,4 @@ const TopUpWithdrawChart: React.FC = () => {
   );
 };
 
-export default TopUpWithdrawChart;
+export default ExpenseChart;

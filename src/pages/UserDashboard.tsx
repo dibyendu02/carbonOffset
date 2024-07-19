@@ -102,7 +102,7 @@ export default function UserUpdates() {
             <div className="w-1/2">
               <TopUpWithdrawChart />
             </div>
-            <div className="w-1/4 flex flex-col items-center">
+            <div className="w-60 flex flex-col items-center">
               <h1 className="font-bold text-lg">Carbon-offset Achieved</h1>
               <CarbonOffsetChart />
             </div>

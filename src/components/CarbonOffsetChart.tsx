@@ -10,8 +10,8 @@ const CarbonOffsetChart: React.FC = () => {
     datasets: [
       {
         data: [30, 70], // 30% achieved, 70% remaining
-        backgroundColor: ["rgba(46, 204, 113,1)", "rgba(3, 138, 255, 1)"],
-        borderColor: ["rgba(75, 192, 192, 1)", "rgba(201, 203, 207, 1)"],
+        backgroundColor: ["#4BAF47", "#F2F4F7"],
+        borderColor: ["#4BAF47", "lightgray"],
         borderWidth: 1,
       },
     ],
