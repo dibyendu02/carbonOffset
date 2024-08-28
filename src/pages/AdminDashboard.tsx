@@ -183,7 +183,7 @@ export default function AdminDashboard() {
               <Button
                 onClick={handleAddProject}
                 variant="outline" className="">
-                Add
+                Add Project
               </Button>
             </div>
             <Table>
