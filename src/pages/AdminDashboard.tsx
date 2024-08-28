@@ -21,41 +21,49 @@ import AddProject from "../components/AddProject";
 import { useEffect, useState } from "react";
 import { deleteProject, getProjects } from "../api/addProject";
 
-const dummyprojectData = [
-  {
-    name: "Project Alpha",
-    location: "USA",
-    status: "Active",
-    userCount: 150,
-  },
-  {
-    name: "Project Beta",
-    location: "Canada",
-    status: "Inactive",
-    userCount: 80,
-  },
-  {
-    name: "Project Gamma",
-    location: "Germany",
-    status: "Active",
-    userCount: 120,
-  },
-  {
-    name: "Project Delta",
-    location: "India",
-    status: "Inactive",
-    userCount: 90,
-  },
-  {
-    name: "Project Epsilon",
-    location: "Australia",
-    status: "Active",
-    userCount: 200,
-  },
-];
+// const dummyprojectData = [
+//   {
+//     name: "Project Alpha",
+//     location: "USA",
+//     status: "Active",
+//     userCount: 150,
+//   },
+//   {
+//     name: "Project Beta",
+//     location: "Canada",
+//     status: "Inactive",
+//     userCount: 80,
+//   },
+//   {
+//     name: "Project Gamma",
+//     location: "Germany",
+//     status: "Active",
+//     userCount: 120,
+//   },
+//   {
+//     name: "Project Delta",
+//     location: "India",
+//     status: "Inactive",
+//     userCount: 90,
+//   },
+//   {
+//     name: "Project Epsilon",
+//     location: "Australia",
+//     status: "Active",
+//     userCount: 200,
+//   },
+// ];
+
+interface ProjectData {
+  name: string;
+  location: string;
+  status: string;
+  userCount: number;
+  _id: string;
+}
 
 export default function AdminDashboard() {
-  const [projectData, setProjectData] = useState([]);
+  const [projectData, setProjectData] = useState<ProjectData[]>([]);
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,6 +81,7 @@ export default function AdminDashboard() {
       // const res = await deleteProject({ id });
       // console.log(res);
       const res = await deleteProject({ id });
+      console.log(res);
       setProjectData(prev => prev.filter((project: any) => project._id !== id));
     } catch (error) {
       console.error("Failed to delete project", error);

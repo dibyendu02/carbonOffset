@@ -57,7 +57,7 @@ const OurProjects = () => {
 
         if (isMounted) {
           setProjectData(prev => {
-            const transformedData = res.map((project, index) => ({
+            const transformedData = res.map((project: any, index: any): any => ({
               id: prev.length + index + 1, // Unique and incremental IDs
               image: image[index % image.length], // Cycles through the images
               title: project.name,
