@@ -17,8 +17,11 @@ import {
   Table,
 } from "../components/ui/table";
 import { FaArrowUp } from "react-icons/fa6";
+import AddProject from "../components/AddProject";
+import { useEffect, useState } from "react";
+import { deleteProject, getProjects } from "../api/addProject";
 
-const projectData = [
+const dummyprojectData = [
   {
     name: "Project Alpha",
     location: "USA",
@@ -52,7 +55,38 @@ const projectData = [
 ];
 
 export default function AdminDashboard() {
+  const [projectData, setProjectData] = useState([]);
   const navigate = useNavigate();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAddProject = () => {
+    setIsModalOpen(true);
+  };
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const handleDeleteProject = async (id: string) => {
+    try {
+      // const res = await deleteProject({ id });
+      // console.log(res);
+      const res = await deleteProject({ id });
+      setProjectData(prev => prev.filter((project: any) => project._id !== id));
+    } catch (error) {
+      console.error("Failed to delete project", error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const res = await getProjects();
+      setProjectData(res);
+    }
+
+    fetchProjects();
+  }, []);
 
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
@@ -144,7 +178,14 @@ export default function AdminDashboard() {
             </Card>
           </div>
           <div className="border shadow-sm rounded-lg p-4 mt-6 bg-white">
-            <h2 className="font-bold mb-4">Active Projects</h2>
+            <div className="flex flex-row justify-between">
+              <h2 className="font-bold mb-4">Active Projects</h2>
+              <Button
+                onClick={handleAddProject}
+                variant="outline" className="">
+                Add
+              </Button>
+            </div>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -173,7 +214,11 @@ export default function AdminDashboard() {
                         <Button variant="outline" className=" ">
                           Edit
                         </Button>
-                        <Button variant="outline" className="">
+                        <Button variant="outline" className=""
+                          onClick={() => {
+                            handleDeleteProject(project._id);
+                          }}
+                        >
                           Delete
                         </Button>
                       </div>
@@ -183,6 +228,7 @@ export default function AdminDashboard() {
               </TableBody>
             </Table>
           </div>
+          <AddProject isOpen={isModalOpen} toggleModal={toggleModal} onAddProject={setProjectData} />
         </main>
       </div>
     </div>
