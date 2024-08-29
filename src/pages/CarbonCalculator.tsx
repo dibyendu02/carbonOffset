@@ -68,7 +68,7 @@ const CarbonCalculator = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/create-checkout-session', costDetails, {
+      const response = await axios.post('https://carbonoffset-backend.onrender.com/create-checkout-session', costDetails, {
         headers: {
           'Content-Type': 'application/json'
         }
