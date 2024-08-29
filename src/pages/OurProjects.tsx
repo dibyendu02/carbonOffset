@@ -9,8 +9,10 @@ import three from "../assets/projects/3.png";
 import four from "../assets/projects/4.png";
 
 import Footer from "../components/Footer";
+import { useEffect, useState } from "react";
+import { getProjects } from "../api/addProject";
 
-const projectData = [
+const projectDataDummy = [
   {
     id: 1,
     image: one,
@@ -42,6 +44,46 @@ const projectData = [
 ];
 
 const OurProjects = () => {
+  const [projectData, setProjectData] = useState(projectDataDummy);
+
+  const image = [one, two, three, four];
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchdata = async () => {
+      try {
+        const res = await getProjects();
+
+        if (isMounted) {
+          setProjectData(prev => {
+            const transformedData = res.map((project: any, index: any): any => ({
+              id: prev.length + index + 1, // Unique and incremental IDs
+              image: image[index % image.length], // Cycles through the images
+              title: project.name,
+              desc: project.details.replace(/<[^>]+>/g, ''), // Strips HTML tags if needed
+              url: "#",
+            }));
+
+            console.log('Transformed Data:', transformedData);
+            return [...prev, ...transformedData];
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
+
+    fetchdata();
+
+    return () => {
+      isMounted = false; // Cleanup function to avoid setting state if the component is unmounted
+    };
+  }, []); // Empty dependency array ensures this effect runs only once
+
+
+
+
   return (
     <div>
       <Navbar />
