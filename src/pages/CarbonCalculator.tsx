@@ -168,7 +168,7 @@ const CarbonCalculator = () => {
                   Emmision total tokens
                 </h1>
                 <div className="bg-white px-2 w-48 py-3 rounded-md border border-black ">
-                  <h1 className="font-semibold">Total ${totalCost}</h1>
+                  <h1 className="font-semibold">Total {totalCost / 10}</h1>
                 </div>
               </div>
               <div className="flex gap-5">

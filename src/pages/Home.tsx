@@ -19,6 +19,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { FaLeaf } from "react-icons/fa";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const FutureData = [
   {
@@ -54,6 +55,7 @@ const ProjectData = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <Navbar />
@@ -75,7 +77,9 @@ const Home = () => {
         <h1 className="text-white text-6xl font-bold w-1/2 text-center">
           Working Towards A Sustainable World
         </h1>
-        <button className="px-5 py-2 mt-10 bg-green-600 rounded-xl text-white flex gap-2 items-center font-bold">
+        <button
+          onClick={() => navigate('/offsetNow')}
+          className="px-5 py-2 mt-10 bg-green-600 rounded-xl text-white flex gap-2 items-center font-bold">
           <FaTree /> Offset Now
         </button>
 

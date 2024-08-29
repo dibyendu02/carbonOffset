@@ -4,8 +4,13 @@ import road from "../assets/offset/road.png";
 import certificate from "../assets/offset/certificate.png";
 import Footer from "../components/Footer";
 import { FaArrowRight, FaLock } from "react-icons/fa6";
+import { useState } from "react";
 
 const OffsetNow = () => {
+  const [amount, setAmount] = useState(0);
+  const handleClick = async () => {
+
+  }
   return (
     <div>
       <Navbar />
@@ -34,6 +39,8 @@ const OffsetNow = () => {
               <h1 className="font-semibold">Enter Dollar Amount</h1>
               <input
                 placeholder="100 $"
+                value={amount}
+                // onChange={(e) => setAmount(e.target.value)}
                 className="w-full h-14 text-4xl font-bold text-center border-b-2 border-black focus:outline-none focus:border-b-2"
               />
               <h1 className="font-semibold">Select Frequency</h1>
@@ -45,7 +52,7 @@ const OffsetNow = () => {
                   Monthly
                 </div>
                 <div className="w-32 text-center py-3 bg-gray-300 hover:bg-green-600 hover:text-white text-lg font-bold rounded-md cursor-pointer">
-                  Quaterly
+                  Quarterly
                 </div>
                 <div className="w-32 text-center py-3 bg-gray-300 hover:bg-green-600 hover:text-white text-lg font-bold rounded-md cursor-pointer">
                   Yearly
@@ -54,7 +61,9 @@ const OffsetNow = () => {
               <h1 className="text-xs tracking-[4px] uppercase font-bold">
                 total <span className="text-green-600">10 tokens</span>
               </h1>
-              <button className="flex justify-between px-6 py-3 bg-green-600 items-center text-white w-[80%] rounded-full">
+              <button
+                onClick={() => handleClick()}
+                className="flex justify-between px-6 py-3 bg-green-600 items-center text-white w-[80%] rounded-full">
                 <h1 className="font-bold">Add to Wallet</h1>
                 <FaLock />
               </button>
