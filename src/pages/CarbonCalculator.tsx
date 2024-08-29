@@ -10,6 +10,9 @@ import Electricity from "../components/Calculator/Electricity";
 import FuelOil from "../components/Calculator/FuelOil";
 import Propane from "../components/Calculator/Propane";
 import Waste from "../components/Calculator/Waste";
+import { loadStripe } from '@stripe/stripe-js';
+import { Button } from "../components/ui/button";
+import axios from "axios";
 
 
 const factors = ["Vehicle", "Natural Gas", "Electricity", "Fuel Oil", "Propane", "Waste"];
@@ -49,6 +52,40 @@ const CarbonCalculator = () => {
   const calculateTotalCost = (co2: number) => {
     const tokenConversion = 0.1;
     return parseFloat((co2 * tokenConversion).toFixed(2));
+  };
+
+  const makePayment = async () => {
+    const stripe = await loadStripe('pk_test_51NI9oZSDxZ4Y853IEjEc8LwTXw7YKpRX8im6bpIlLkHO0FGXmjeJ4KE8FlIzfZosg1Bh1aoX5LUm2o3ekJvBr7vq00FL7YPT91');
+
+    if (!stripe) {
+      console.error("Stripe failed to load.");
+      return;
+    }
+
+    const costDetails = {
+      totalCost: totalCost,
+      totalCO2: totalCO2
+    };
+
+    try {
+      const response = await axios.post('http://localhost:5000/create-checkout-session', costDetails, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const session = response.data;
+
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id
+      });
+
+      if (result.error) {
+        console.error(result.error.message);
+      }
+    } catch (error) {
+      console.error("Payment failed:", error);
+    }
   };
 
   useEffect(() => {
@@ -131,16 +168,20 @@ const CarbonCalculator = () => {
                   Emmision total tokens
                 </h1>
                 <div className="bg-white px-2 w-48 py-3 rounded-md border border-black ">
-                  <h1 className="font-semibold">Total 0.00 Tokens</h1>
+                  <h1 className="font-semibold">Total ${totalCost}</h1>
                 </div>
               </div>
               <div className="flex gap-5">
-                <button className="bg-green-600 hover:bg-green-500 w-48 py-4 text-white font-bold rounded-md">
+                <Button
+                  onClick={makePayment}
+                  className="bg-green-600 hover:bg-green-500 w-48 py-8 text-white font-bold rounded-md">
                   Buy Now
-                </button>
-                <button className=" border border-green-600 w-48 py-4  font-bold rounded-md">
+                </Button>
+                <Button
+                  variant={"outline"}
+                  className=" border border-green-600 w-48 py-8  font-bold rounded-md">
                   Add to Cart
-                </button>
+                </Button>
               </div>
             </div>
           </div>
