@@ -17,6 +17,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminAllTransaction from "./pages/AdminAllTransaction";
 import AdminFarmOnboarding from "./pages/AdminFarmOnboarding";
 import AdminProjectDetails from "./pages/AdminProjectDetails";
+import Success from "./pages/Success";
+import FailurePage from "./pages/Failour";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +80,18 @@ const router = createBrowserRouter([
   {
     path: "/adminProjectDetails",
     element: <AdminProjectDetails />,
+  },
+  {
+    path: "/success",
+    element: <Success />,
+  },
+  {
+    path: "/success",
+    element: <Success />,
+  },
+  {
+    path: "/failure",
+    element: <FailurePage />,
   },
 ]);
 
