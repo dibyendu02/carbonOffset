@@ -111,7 +111,7 @@ const Home = () => {
             </h1>
             <h1 className="text-6xl font-bold my-3">Farm Onboarding</h1>
             <h1 className="text-lg w-[90%] mb-10">
-              We can help Farm Onborder of all sizes measure and offset their
+              We can help Farm Onboarding of all sizes measure and offset their
               carbon footprint!
             </h1>
             <div className="relative">
@@ -181,7 +181,7 @@ const Home = () => {
                 Monthly
               </div>
               <div className="w-32 text-center py-3 bg-gray-300 hover:bg-green-600 hover:text-white text-lg font-bold rounded-md cursor-pointer">
-                Quaterly
+                Quarterly
               </div>
               <div className="w-32 text-center py-3 bg-gray-300 hover:bg-green-600 hover:text-white text-lg font-bold rounded-md cursor-pointer">
                 Yearly
