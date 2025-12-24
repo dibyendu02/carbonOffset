@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import { FaTree } from "react-icons/fa6";
 import { RiWallet3Fill } from "react-icons/ri";
+import logo from "../assets/home/1world1nation.png";
 
 const Navbar = () => {
   //   const navigation = useNavigate();
   return (
     <div className="w-full h-28   flex items-center px-10 justify-between ">
       <div className="flex gap-14 items-center">
-        <h1 className="text-green-600 text-4xl font-bold">Carbon</h1>
+        <img src={logo} className="w-32 h-16 object-contain" />
         <div className="flex gap-10 pt-3 text-lg items-center">
           <Link to="/" className="hover:text-green-600">
             Home
