@@ -12,9 +12,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import TopUpWithdrawChart from "../components/TopUpWithdrawChart";
 import CarbonOffsetChart from "../components/CarbonOffsetChart";
+import MetricsCard from "../components/charts/MetricsCard";
+import AreaChart from "../components/charts/AreaChart";
+import StackedBarChart from "../components/charts/StackedBarChart";
+import { generateMockData } from "../data/dashboardData";
 
 export default function UserUpdates() {
   const navigate = useNavigate();
+  const dashboardData = generateMockData();
 
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
@@ -49,63 +54,106 @@ export default function UserUpdates() {
           </Button>
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
-          <h1 className="font-bold">John's Cards</h1>
-          <div className="grid h-[20vh] gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <Card className="bg-green-600">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-md font-bold text-white">
-                  User Account Balance
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold text-white">$ 1000</div>
-              </CardContent>
-            </Card>
-            <Card className="bg-green-600">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-md font-bold text-white">
-                  Available Tokens
-                </CardTitle>
-                {/* <Link className="text-sm font-medium underline" to="#">
-                  View All
-                </Link> */}
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold text-white">450 Tokens</div>
-              </CardContent>
-            </Card>
-            <Card className="bg-green-600 ">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-md font-bold text-white">
-                  Used Tokens
-                </CardTitle>
-                {/* <Link className="text-sm font-medium underline" to="#">
-                  View All
-                </Link> */}
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold text-white">100 Tokens</div>
-              </CardContent>
-            </Card>
-            {/* <div
-              style={{
-                backgroundImage: `url(${cardBg})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                height: "200px",
-                width: "130%",
-              }}
-              className="rounded-md"
-            ></div> */}
+          <h1 className="font-bold text-2xl">Dashboard Overview</h1>
+
+          {/* Enhanced KPI Cards with Sparklines */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <MetricsCard
+              title="Account Balance"
+              value={dashboardData.accountBalance.current}
+              trend={dashboardData.accountBalance.changePercent}
+              sparklineData={dashboardData.accountBalance.trend}
+              format="currency"
+              gradientFrom="#16c784"
+              gradientTo="#0e8a54"
+            />
+            <MetricsCard
+              title="Available Tokens"
+              value={dashboardData.tokens.available}
+              trend={0.5}
+              sparklineData={dashboardData.tokens.balance}
+              format="number"
+              gradientFrom="#4BAF47"
+              gradientTo="#16c784"
+            />
+            <MetricsCard
+              title="Used Tokens"
+              value={dashboardData.tokens.used}
+              trend={-2.1}
+              sparklineData={dashboardData.tokens.monthlyUsed}
+              format="number"
+              gradientFrom="#3B82F6"
+              gradientTo="#1E40AF"
+            />
+            <MetricsCard
+              title="CO2 Offset (tons)"
+              value={dashboardData.emissions.total.reduce((a, b) => a + b, 0) / 1000}
+              trend={3.8}
+              sparklineData={dashboardData.emissions.total}
+              format="decimal"
+              gradientFrom="#10B981"
+              gradientTo="#059669"
+            />
           </div>
-          <div className="flex justify-between pr-32">
-            <div className="w-1/2">
-              <TopUpWithdrawChart />
-            </div>
-            <div className="w-60 flex flex-col items-center">
-              <h1 className="font-bold text-lg">Carbon-offset Achieved</h1>
-              <CarbonOffsetChart />
-            </div>
+
+          {/* Charts Section - Emissions Trends and Category Breakdown */}
+          <div className="grid gap-6 lg:grid-cols-2 mt-6">
+            <Card className="p-6">
+              <CardHeader className="px-0 pt-0">
+                <CardTitle className="text-lg font-bold">Emissions Trend (kg CO2)</CardTitle>
+              </CardHeader>
+              <CardContent className="px-0 pb-0">
+                <div className="h-[300px]">
+                  <AreaChart
+                    data={dashboardData.emissions.total}
+                    label="Total Emissions"
+                    color="#16c784"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6">
+              <CardHeader className="px-0 pt-0">
+                <CardTitle className="text-lg font-bold">Category Breakdown</CardTitle>
+              </CardHeader>
+              <CardContent className="px-0 pb-0">
+                <div className="h-[300px]">
+                  <StackedBarChart
+                    data={dashboardData.emissions.monthly}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Original Charts - Token Activity and Offset Progress */}
+          <div className="grid gap-6 lg:grid-cols-3 mt-6">
+            <Card className="p-6 lg:col-span-2">
+              <CardHeader className="px-0 pt-0">
+                <CardTitle className="text-lg font-bold">Token Activity</CardTitle>
+              </CardHeader>
+              <CardContent className="px-0 pb-0">
+                <TopUpWithdrawChart />
+              </CardContent>
+            </Card>
+
+            <Card className="p-6">
+              <CardHeader className="px-0 pt-0">
+                <CardTitle className="text-lg font-bold text-center">Carbon Offset Progress</CardTitle>
+              </CardHeader>
+              <CardContent className="px-0 pb-0 flex flex-col items-center">
+                <CarbonOffsetChart />
+                <div className="mt-4 text-center">
+                  <p className="text-sm text-gray-600">
+                    {dashboardData.offsets.achieved} / {dashboardData.offsets.target} tons offset
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {dashboardData.offsets.percentComplete}% Complete
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </main>
       </div>

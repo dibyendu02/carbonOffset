@@ -23,14 +23,14 @@ export const generateOffsetReport = (options: PDFExportOptions) => {
   const margin = 20;
 
   // Add semi-transparent watermark
-  doc.setGState(new doc.GState({ opacity: 0.1 }));
+  doc.setGState({ opacity: 0.1 } as any);
   doc.setFontSize(60);
   doc.setTextColor(100, 100, 100);
   doc.text("1World1Nation", pageWidth / 2, pageHeight / 2, {
     align: "center",
     angle: 45,
   });
-  doc.setGState(new doc.GState({ opacity: 1.0 }));
+  doc.setGState({ opacity: 1.0 } as any);
 
   // Reset colors
   doc.setTextColor(0, 0, 0);

@@ -1,9 +1,8 @@
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Newsletter from "../components/Newsletter";
 import curve from "../assets/home/curve.png";
 import mainbg from "../assets/services/mainbg.png";
-import newsletterbg from "../assets/home/newsletterbg.png";
-import logo from "../assets/home/logo.png";
 import about from "../assets/about/about.png";
 import { FaLeaf } from "react-icons/fa";
 
@@ -108,30 +107,8 @@ const About = () => {
       </div>
 
       {/* newsletter  */}
+      <Newsletter />
 
-      <div
-        style={{
-          backgroundImage: `url(${newsletterbg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "150px",
-        }}
-        className="flex items-center justify-between px-16"
-      >
-        <div className="flex gap-16 items-center  ">
-          <img src={logo} alt="logo" />
-          <h1 className="text-xl text-white">Join Our Newsletter</h1>
-        </div>
-        <div className="flex gap-3">
-          <input
-            className="w-60 h-10 rounded-md p-2 bg-white "
-            placeholder="Enter your email"
-          />
-          <button className="bg-violet-600 text-white font-bold px-5 py-2 rounded-md ">
-            Submit
-          </button>
-        </div>
-      </div>
       <Footer />
     </div>
   );
